@@ -1,0 +1,44 @@
+if TARGET_NA51089
+
+config SYS_CONFIG_NAME
+	string "Board configuration name"
+	default "nvt-na51089-evb"
+	help
+	  This option contains information about board configuration name.
+	  Based on this option include/configs/<CONFIG_SYS_CONFIG_NAME>.h header
+	  will be used for board configuration.
+
+#config SYS_TEXT_BASE
+#	default 0x00000000
+
+config SYS_BOARD
+	default "nvt-na51089"
+	help
+	  This option contains information about board name.
+	  Based on this option board/<CONFIG_SYS_VENDOR>/<CONFIG_SYS_BOARD> will
+	  be used.
+
+config SYS_SOC
+	default "nvt-na51089_a32"
+
+config NVT_NAND_TYPE
+	int "0: ONFINAND, 1: SPINAND, 2:SPINOR"
+	depends on (NVT_SPI_NAND || NVT_SPI_NOR)
+	default 1
+
+config NVT_NAND_ECC
+	int "0: RS-ECC, 1: On-Die ECC"
+	depends on (NVT_SPI_NAND || NVT_SPI_NONE)
+	default 1
+
+config NVT_IVOT_DDR_SLOW_DOWN_SUPPORT
+	bool "To support slow down DDR frequency"
+	default n
+	help
+	  This option is used to change DDR frequency to minimum.
+
+# To include novatek board common config
+source "board/novatek/common/Kconfig"
+# To include novatek board specific config
+source "board/novatek/nvt-na51089/Kconfig"
+endif

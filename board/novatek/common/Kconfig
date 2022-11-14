@@ -1,0 +1,93 @@
+menu "Novatek IVOT features"
+config NVT_IVOT_SOC
+	bool "Novatek IVOT series soc"
+	help
+	  This option can be used to enable ivot features.
+
+config NVT_FPGA_EMULATION
+	bool "Novatek IVOT FPGA emulation"
+	default n
+	help
+	  This option can be used to enable FPGA emulation.
+
+config NVT_IVOT_SOC_FW_UPDATE_SUPPORT
+	bool "Novatek IVOT FW update utils"
+	default n
+	help
+	  This option can be used to support fdt parsing and update api.
+
+config NVT_IVOT_SOC_UTILS
+	bool "Novatek IVOT utils"
+	default n
+	help
+	  To support IVOT proprietary utilities.
+
+config NVT_IVOT_NVT_DBG
+	bool "Novatek IVOT debug setting"
+	default n
+	help
+	  To support IVOT message debug function.
+
+config NVT_IVOT_DEBUG_LEVEL
+	int "Debug msg print level (0-8)"
+        default 4
+        depends on NVT_IVOT_NVT_DBG
+        help
+          0 ~ 8: 8 is to turn on all print message
+
+config NVT_IVOT_BOOT_FAST
+	bool "Let your uboot booting time faster"
+	default n
+	help
+	  This option can be used to accelerate boot time.
+
+config NVT_IVOT_OPTEE_SUPPORT
+	bool "To support the optee utils"
+	default n
+	help
+	  This option is used to communicate with optee secure os.
+
+config NVT_IVOT_OPTEE_SECBOOT_SUPPORT
+	bool "To support secure boot flow with optee"
+	depends on NVT_IVOT_OPTEE_SUPPORT
+	default n
+	help
+	  To support secure boot flow with optee
+
+config NVT_IVOT_TZPC_SUPPORT
+	bool "To support TZPC related utils"
+	default n
+	help
+	  This option is used to simple verify TZPC.
+
+config NVT_IVOT_DDR_RANGE_SCAN_SUPPORT
+	bool "To support DDR range scan utils"
+	default n
+	help
+	  This option is used to lunch range scan.
+
+config VIDEO_LOGO
+	bool "To support display LOGO"
+	default n
+	help
+	  This option is used to lunch display LOGO.
+
+config NVT_IVOT_CRYPTO_CMD
+	bool "To support crypto engine command"
+	depends on NVT_IVOT_SOC && NVT_IVOT_OPTEE_SUPPORT=n
+	help
+	  Novatek iVot Crypto Engine Command support.
+
+config NVT_IVOT_HASH_CMD
+	bool "To support hash engine command"
+	depends on NVT_IVOT_SOC && NVT_IVOT_OPTEE_SUPPORT=n
+	help
+	  Novatek iVot Hash Engine Command support.
+
+config NVT_IVOT_RSA_CMD
+	bool "To support rsa engine command"
+	depends on NVT_IVOT_SOC && NVT_IVOT_OPTEE_SUPPORT=n
+	help
+	  Novatek iVot RSA Engine Command support.
+
+endmenu		# Novatek IVOT features

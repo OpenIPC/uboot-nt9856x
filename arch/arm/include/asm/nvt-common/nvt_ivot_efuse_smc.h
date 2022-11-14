@@ -1,0 +1,47 @@
+#ifndef _EFUSE_SMC_H
+#define _EFUSE_SMC_H
+#define SMC_EFUSE_MAKEFOURCC(ch0, ch1, ch2, ch3) ((UINT32)(UINT8)(ch0) | ((UINT32)(UINT8)(ch1) << 8) | ((UINT32)(UINT8)(ch2) << 16) | ((UINT32)(UINT8)(ch3) << 24))
+#define SMC_EFUSE_TAG         SMC_EFUSE_MAKEFOURCC('E', 'F', 'U', 'S')
+#define SMC_EFUSE_KEY_TAG         SMC_EFUSE_MAKEFOURCC('E', 'K', 'E', 'Y')
+
+#include <asm/arch-nvt-na51055_a32/efuse_protected.h>
+
+typedef enum _NVT_SMC_EFUSE_CMD
+{
+	NVT_SMC_EFUSE_IS_SECURE,
+	NVT_SMC_EFUSE_IS_DATA_ENCRYPTED,
+	NVT_SMC_EFUSE_IS_RSA_KEY_CHECK,
+	NVT_SMC_EFUSE_IS_SIGNATURE_RSA,
+	NVT_SMC_EFUSE_WRITE_KEY,
+	NVT_SMC_EFUSE_COMPARE_KEY,
+	NVT_SMC_EFUSE_ENABLE_SECURE,
+	NVT_SMC_EFUSE_ENABLE_DATA_ENCRYPTED,
+	NVT_SMC_EFUSE_ENABLE_RSA_KEY_CHECK,
+	NVT_SMC_EFUSE_ENABLE_SIGNATURE_RSA,
+	NVT_SMC_EFUSE_CHECK_KEY_FIELD,
+	NVT_SMC_EFUSE_READ_KEY_FIELD,
+	NVT_SMC_EFUSE_LOCK_READ_KEY_FIELD,
+	NVT_SMC_EFUSE_LOCK_ENGINE_READ_KEY_FIELD,
+	NVT_SMC_EFUSE_TRIGGER_KEY_SET,
+	NVT_SMC_EFUSE_MAX
+}NVT_SMC_EFUSE_CMD;
+
+
+typedef struct _NVT_SMC_EFUSE_KEY_DATA
+{
+	unsigned int tag; //should be MAKEFOURCC('W', 'R', 'I', 'T')
+	EFUSE_OTP_KEY_SET_FIELD field;
+	unsigned char data[16]; //16 bytes for one field
+}NVT_SMC_EFUSE_KEY_DATA;
+
+typedef struct _NVT_SMC_EFUSE_DATA
+{
+	unsigned int tag; //should be MAKEFOURCC('E', 'F', 'U', 'S')
+	NVT_SMC_EFUSE_CMD cmd;
+	NVT_SMC_EFUSE_KEY_DATA key_data;
+	unsigned int	reserve[24]; //customer no need to set
+
+}NVT_SMC_EFUSE_DATA;
+
+int nvt_ivot_optee_efuse_operation(NVT_SMC_EFUSE_DATA *efuse_data);
+#endif// _EFUSE_SMC_H

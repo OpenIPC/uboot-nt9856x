@@ -1,0 +1,38 @@
+if TARGET_NA51090_A64
+
+# board/$SYS_VENDOR/$SYS_BOARD
+# arch/<CONFIG_SYS_ARCH>/cpu/<CONFIG_SYS_CPU>/<CONFIG_SYS_SOC>.
+config SYS_BOARD
+	default "nvt-na51090-a64"
+
+config SYS_VENDOR
+	default "novatek"
+
+# include/configs/$SYS_CONFIG_NAME
+config SYS_CONFIG_NAME
+	default "nvt-na51090-evb-a64"
+
+# To setup the uboot system environment store setting
+config ENV_SIZE
+	hex
+	default 0x20000 if ENV_IS_IN_NAND
+	default 0x10000 if ENV_IS_IN_SPI_FLASH
+	default 0x40000 if ENV_IS_IN_MMC
+	default 0x2000 if ENV_IS_NOWHERE
+
+config ENV_OFFSET
+	hex
+	default 0x3c000 if ENV_IS_IN_NAND
+	default 0x00B0000 if ENV_IS_IN_SPI_FLASH
+	default 0x002C0000 if ENV_IS_IN_MMC
+
+config ENV_RANGE
+	hex
+	default 0x40000 if ENV_IS_IN_NAND
+
+config ENV_SECT_SIZE
+	hex
+	default 0x10000 if ENV_IS_IN_SPI_FLASH
+
+source "board/novatek/nvt-na51090-a64/nvt_pcie/Kconfig"
+endif

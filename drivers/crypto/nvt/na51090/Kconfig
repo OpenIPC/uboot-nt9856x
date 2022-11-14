@@ -1,0 +1,21 @@
+config NVT_CRYPTO
+	bool "NovaTek NA51090 Crypto Driver Support"
+	depends on NVT_IVOT_SOC && NVT_IVOT_OPTEE_SUPPORT=n
+	help
+	  Novatek NA51090 processors have crypto engine accelerator.
+	  Select this if you want to use the crypto engine for AES/DES/3DES
+	  algorithms.
+
+config NVT_HASH
+	bool "NovaTek NA51090 Hash Driver Support"
+	depends on NVT_IVOT_SOC && NVT_IVOT_OPTEE_SUPPORT=n
+	help
+	  Novatek NA51090 processors have hash engine accelerator.
+	  Select this if you want to use the hash engine for SHA1/SHA256 algorithms.
+
+config NVT_RSA
+	bool "NovaTek NA51090 RSA Driver Support"
+	depends on NVT_IVOT_SOC && NVT_IVOT_OPTEE_SUPPORT=n
+	help
+	  Novatek NA51090 processors have rsa engine accelerator.
+	  Select this if you want to use the rsa engine.

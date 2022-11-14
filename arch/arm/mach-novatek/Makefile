@@ -1,0 +1,9 @@
+# SPDX-License-Identifier:	GPL-2.0
+
+obj-$(CONFIG_TARGET_NA51000) += nvt_na51000_a32/
+obj-$(CONFIG_TARGET_NA51000_A64) += nvt_na51000_a64/
+obj-$(CONFIG_TARGET_NA51055) += nvt_na51055_a32/
+obj-$(CONFIG_TARGET_NA51068) += nvt_na51068_a32/
+obj-$(CONFIG_TARGET_NA51089) += nvt_na51089_a32/
+obj-$(CONFIG_TARGET_NA51090) += nvt_na51090_a32/
+obj-$(CONFIG_TARGET_NA51090_A64) += nvt_na51090_a64/

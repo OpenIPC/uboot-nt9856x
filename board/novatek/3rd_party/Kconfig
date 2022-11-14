@@ -1,0 +1,8 @@
+menu "Novatek 3rd Party Features"
+config NVT_RTK_BT_FWLOAD
+	bool "Support RTK BT dongle firmware download functions"
+	help
+	   Support RTK BT dongle firmware download functions
+
+
+endmenu		# Novatek 3rd Party Features

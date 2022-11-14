@@ -1,0 +1,49 @@
+choice
+	prompt "Support for NVT IVOT Flash Controller"
+	default NVT_SPI_NAND
+	depends on NVT_IVOT_SOC
+
+config NVT_SPI_NONE
+	tristate "Not Support for NVT IVOT Flash Controller"
+	depends on (NVT_IVOT_SOC)
+	help
+	  Disable support for Novatek NA51055 NAND Flash Controller.
+
+config NVT_SPI_NAND
+	tristate "Support for NVT IVOT NAND Flash Controller"
+	depends on (NVT_IVOT_SOC)
+	help
+	  Enable support for Novatek NA51055 NAND Flash Controller.
+
+config NVT_SPI_NOR
+	tristate "Support for NVT IVOT NOR Flash Controller"
+	depends on (NVT_IVOT_SOC)
+	help
+	  Enable support for Novatek NA51055 NOR Flash Controller.
+
+config NVT_SPI_NONE
+	tristate "Not Support for NVT IVOT Flash Controller"
+	depends on (NVT_IVOT_SOC && TARGET_NA51068)
+	help
+	  Disable support for Novatek NA51068 NAND Flash Controller.
+
+config NVT_SPI_NAND
+	tristate "Support for NVT IVOT NAND Flash Controller"
+	depends on (NVT_IVOT_SOC && TARGET_NA51068)
+	help
+	  Enable support for Novatek NA51068 NAND Flash Controller.
+
+config NVT_SPI_NOR
+	tristate "Support for NVT IVOT NOR Flash Controller"
+	depends on (NVT_IVOT_SOC && TARGET_NA51068)
+	help
+	  Enable support for Novatek NA51068 NOR Flash Controller.
+endchoice
+
+config FLASH_ONLY_DUAL
+	bool "Only Support dual mode access"
+	depends on (NVT_SPI_NAND || NVT_SPI_NOR)
+	help
+	  Dual mode supports.
+	  Force flash operations under dual mode.
+

@@ -1,0 +1,32 @@
+if ARCH_NOVATEK
+	if TARGET_NA51090_A64 || TARGET_NA51090
+		menu "Novatek PCIE features"
+		config NVT_PCIE
+				bool "NVT PCIE support"
+
+		config NVT_PCIE_MAPPING
+				bool "Support for pcie memory mapping"
+				depends on NVT_PCIE
+				default n
+				help
+				Enabling this will make a U-Boot binary that is capable of being
+				pcie memory mapping
+
+		config NVT_PCIE_TEST_MODE
+				int "NVT PCIE test mode"
+				default 1
+				depends on NVT_PCIE_MAPPING
+				help
+					0: test RC loopback (test mode)
+					1: test RC side in cascade
+					2: test EP side in cascade
+
+		config NVT_PCIE_CASCADE
+				bool "Enable 63x pcie cascade"
+				depends on NVT_PCIE && TARGET_NA51090_A64
+				default n
+				help
+				This option is used to enable 63x pcie cascade mode.
+		endmenu
+	endif # TARGET_NA51090 || TARGET_NA51090_A64
+endif # ARCH_NOVATEK

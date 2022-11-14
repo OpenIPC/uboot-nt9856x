@@ -1,0 +1,26 @@
+/*
+ * Novatek Ltd. NA51055 BSP part of dts
+ *
+ * Cortex-A9
+ *
+ */
+
+/dts-v1/;
+#include "skeleton.dtsi"
+#include <dt-bindings/gpio/gpio.h>
+
+/ {
+	aliases {
+		mmc0 = &mmc0;	/* Fixed to mmcblk0 for sdio1 */
+	};
+
+	mmc0: mmc@fa600000 {
+		compatible = "nvt,nvt_mmc";
+		reg = <0xfa600000 0x1000>;
+		max-frequency = <12000000>;
+		voltage-switch = <0>;
+		max-voltage = <3300>;
+		bus-width = <4>;
+		driving = <10 10 10 15 15 15 25 25 25 25 25 25>;
+	};
+};
